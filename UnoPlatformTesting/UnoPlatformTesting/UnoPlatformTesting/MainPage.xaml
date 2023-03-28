@@ -9,8 +9,9 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <StackPanel>
-      <!-- XAML TO TEST -->
-    
+        <!-- XAML TO TEST -->
+        <TextBox x:Name="textBox" Text="https://platform.uno"/>
+        <Button Content="Launch" Click="Button_Click"/>
 
     </StackPanel>
 </Page>

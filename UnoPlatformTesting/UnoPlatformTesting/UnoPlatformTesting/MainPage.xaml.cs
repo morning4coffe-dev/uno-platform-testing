@@ -12,6 +12,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace UnoPlatformTesting
@@ -21,6 +22,32 @@ namespace UnoPlatformTesting
         public MainPage()
         {
             this.InitializeComponent();
+        }
+
+        public async void LaunchUri()
+        {
+            if (!Uri.TryCreate(textBox.Text, UriKind.Absolute, out var uri))
+            {
+
+                return;
+            }
+
+            var supportStatus = await Launcher.QueryUriSupportAsync(uri, LaunchQuerySupportType.Uri);
+            //On WASM does not continue 
+
+            if (supportStatus == LaunchQuerySupportStatus.Available)
+            {
+                Launcher.LaunchUriAsync(uri);
+            }
+            else
+            {
+                //do something when not available
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            LaunchUri();
         }
     }
 }
