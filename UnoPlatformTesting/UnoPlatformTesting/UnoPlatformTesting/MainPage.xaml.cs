@@ -28,12 +28,10 @@ namespace UnoPlatformTesting
         {
             if (!Uri.TryCreate(textBox.Text, UriKind.Absolute, out var uri))
             {
-
                 return;
             }
 
             var supportStatus = await Launcher.QueryUriSupportAsync(uri, LaunchQuerySupportType.Uri);
-            //On WASM does not continue 
 
             if (supportStatus == LaunchQuerySupportStatus.Available)
             {
@@ -41,7 +39,8 @@ namespace UnoPlatformTesting
             }
             else
             {
-                //do something when not available
+                throw new Exception("Support status: " + supportStatus);
+                //exception is thrown every time website link is used
             }
         }
 
