@@ -23,7 +23,6 @@
                 <FontIconSource x:Key="DeleteIcon"
                                 Glyph="&#xE74D;" />
 
-                <!--TODO improvements to Android (pobably on Uno site)-->
                 <SwipeItems x:Key="left"
                             Mode="Reveal">
                     <SwipeItem Text="Reply All"
@@ -49,6 +48,7 @@
 
             <GridView.ItemTemplate>
                 <DataTemplate>
+                    <!--Remove Height for #13547-->
                     <UserControl Height="100">
                         <SwipeControl LeftItems="{StaticResource left}"
                                       RightItems="{StaticResource right}"
